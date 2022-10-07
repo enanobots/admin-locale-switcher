@@ -1,0 +1,60 @@
+@import "_select2.less";
+
+.admin-locale-options {
+    display: none;
+}
+
+.btn-locale-switcher {
+    cursor: pointer;
+    height: 3.3rem;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 0;
+    box-shadow: none;
+    color: #41362f;
+    display: inline-block;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    padding: 0.2rem 0.2rem 0.8rem 1.5rem;
+    position: relative;
+    vertical-align: baseline;
+    z-index: 2;
+
+    span {
+        position: relative;
+        padding-right: 25px;
+        &:after {
+            border-style: solid;
+            border-width: 0.5rem 0.4rem 0 0.4rem;
+            content: '';
+            height: 0;
+            position: absolute;
+            right: 1.3rem;
+            margin-top: -0.8em;
+            top: 50%;
+            transition: all 0.2s linear;
+            width: 0;
+            border-color: #060504 transparent transparent transparent;
+        }
+    }
+}
+
+
+img {
+    &.flag-icon {
+        width: 36px;
+        display: inline-block;
+        border-radius: 4px;
+    }
+}
+
+.flag-text {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.locale-placeholder {
+    top: -25px;
+}

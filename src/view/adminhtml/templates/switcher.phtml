@@ -1,0 +1,71 @@
+<?php
+/**
+ * Copyright © Q-Solutions Studio: eCommerce Nanobots. All rights reserved.
+ *
+ * @category    Nanobots
+ * @package     Nanobots_AdminLocaleSwitcher
+ * @author      Jakub Winkler <jwinkler@qsolutionsstudio.com
+ */
+
+use Nanobots\AdminLocaleSwitcher\Block\Adminhtml\Switcher;
+
+/** @var Switcher $block */
+
+?>
+<div class="admin-user">
+    <span class="btn-locale-switcher"><span><img class="flag-icon" src="<?= $block->getUserLocaleIcon(); ?>" /></span></span>
+</div>
+
+<script>
+    require([
+        'jquery',
+        'select2'
+    ], function ($) {
+        let isoCountries = $.parseJSON('<?= $block->getCountryListJSON(); ?>');
+
+        function formatCountry (country) {
+            if (!country.id) { return country.text; }
+            let $country = $(
+                '<img src="' + country.flag + '" class="flag-icon flag-icon-'+ country.id +' flag-icon-squared" />' +
+                '<span class="flag-text">' + country.text + "</span>"
+            );
+            return $country;
+        }
+
+        function formatSelection (country) {
+            if (!country.id) { return country.text; }
+            let $country = $(
+                '<img src="' + country.flag + '" class="flag-icon flag-icon-'+ country.id +' flag-icon-squared" />'
+            );
+            return $country;
+        }
+
+        $(document).ready(function() {
+            $('.admin-locales').select2({
+                dropdownParent: $('#locale-selection'),
+                minimumResultsForSearch: -1,
+                templateResult: formatCountry,
+                templateSelection: formatSelection,
+                data: isoCountries,
+            });
+
+            $('.admin-locales').on("select2:close", function () {
+                $('.admin-locale-options').hide();
+                $('.locale-placeholder').css('position', 'relative');
+            });
+
+            $('.admin-locales').on('select2:select', function (e) {
+                let selectedLocale = e.params.data.flag;
+                $('.flag-icon').attr("src", selectedLocale);
+                $( "#locale-form" ).submit();
+            });
+        });
+
+        $('.btn-locale-switcher').click(function() {
+            $('.admin-locale-options').show();
+            $('.admin-locales').select2('open');
+            $('.locale-placeholder').css('position', 'absolute');
+        });
+
+    });
+</script>
