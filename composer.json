@@ -12,7 +12,7 @@
     {
       "name": "Jakub Winkler",
       "email": "jwinkler@qsolutionsstudio.com"
-    },
+    }
   ],
   "minimum-stability": "dev",
   "require": {
