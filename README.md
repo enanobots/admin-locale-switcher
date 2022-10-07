@@ -13,7 +13,7 @@ A simple module that allows you to switch locale in Magento 2 Admin Panel
 
 Installation is via `composer`
 ```
-composer require enanobots/m2-admin-locale-switcher
+composer require enanobots/admin-locale-switcher
 ```
 
 After installing the packages just run:
